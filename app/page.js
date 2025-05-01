@@ -10,9 +10,6 @@ export default function Page () {
   return (
     <>
       <MainPage/>
-      {/* <button className='bg-orange-500' onClick={() => router.push('/planer')}>
-        플래너 이동
-      </button> */}
     </>
   );
 }
