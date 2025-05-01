@@ -53,7 +53,7 @@ export default function MainPage() {
             {/* 플래너 이동 버튼 */}
             <button
               className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition"
-              onClick={() => router.push('/planer')}
+              onClick={() => router.push('/board')}
             >
               플래너 이동
             </button>
