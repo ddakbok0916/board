@@ -1,10 +1,9 @@
 import React from 'react';
-import MainPage from './MainPage';
+import BoardList from './(components)/BoardList';
 export default function Page () {
   return (
     <>
-      <div>asdasdas</div>
-      <MainPage/>
+      <BoardList/>
     </>
   );
 }
