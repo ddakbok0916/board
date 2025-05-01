@@ -14,5 +14,22 @@ module.exports = (expressApp) => {
   if (expressApp === null) {
     throw new Error('expressApp option must be an express server instance');
   }
+ expressApp.get('/api/main/list', async (req, res) => {
 
+    try {
+      const listData = await db.connect(async function (conn) {
+        let selectQuery = `
+          SELECT *
+          FROM list
+          `;
+        const [rows] = await conn.query(selectQuery);
+        return rows;
+      });  
+
+      res.json(listData);
+    } catch (error) {
+      console.error(error);
+      res.status(500).end(error.message);
+    }
+  });
 };

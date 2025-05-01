@@ -9,12 +9,16 @@ export default function MainPage () {
   const [test, setTest] = useState(0);
 
   useEffect(() => {
-    console.log('안녕');
-  }, [num,test]);
+    const fetch = async () => {
+      const response = await FetchClient('/api/main/list', { method: 'GET' });
+      console.log('🚀 ~ useEffect ~ response:', response);
+    };
+    fetch();
+  }, []);
 
   const handleUp = () => {
-    setNum(() => num + 1)
-  }
+    setNum(() => num + 1);
+  };
 
   return (
     <div className='min-h-screen flex items-center justify-center bg-gray-100'>
