@@ -14,8 +14,7 @@ module.exports = (expressApp) => {
   if (expressApp === null) {
     throw new Error('expressApp option must be an express server instance');
   }
- expressApp.get('/api/main/list', async (req, res) => {
-
+  expressApp.get('/api/main/list', async (req, res) => {
     try {
       const listData = await db.connect(async function (conn) {
         let selectQuery = `
@@ -24,7 +23,27 @@ module.exports = (expressApp) => {
           `;
         const [rows] = await conn.query(selectQuery);
         return rows;
-      });  
+      });
+
+      res.json(listData);
+    } catch (error) {
+      console.error(error);
+      res.status(500).end(error.message);
+    }
+  });
+
+  expressApp.get('/api/main/detail', async (req, res) => {
+    try {
+      const { id } = req.query;
+      const listData = await db.connect(async function (conn) {
+        let selectQuery = `
+          SELECT *
+          FROM list
+          WHERE id = ?
+          `;
+        const [rows] = await conn.query(selectQuery, [id]);
+        return rows;
+      });
 
       res.json(listData);
     } catch (error) {
